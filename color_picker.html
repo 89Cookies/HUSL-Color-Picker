@@ -1,13 +1,38 @@
 <html>
 <head>
     <title>HUSL Color Picker</title>
+    <script>
+        lightness = 60;
+    </script>
+
+    <link type="text/css" href="jquery-ui-1.8.20.custom.css" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-ui-1.8.20.custom.min.js"></script>
     <script type="text/javascript" src="https://raw.github.com/boronine/husl/master/husl.js"></script>
     <script type="text/javascript" src="create_colors.js"></script>
+    <script>
+        $(function() {
+            $( "#slider" ).slider({
+                orientation: "horizontal",
+                range: "min",
+                min: 0,
+                max: 100,
+                value: lightness,
+                change: function( event, ui ) {
+        	        //$( "#amount" ).val( ui.value );
+                    lightness = ui.value;
+        	        update_colors();
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-    <canvas id="colors" width="361" height="101"></canvas>
-    <canvas id="current_color"></canvas>
+    <div id="slider" style="width:461px;"></div>
+    <p>
+        <canvas id="colors" width="361" height="101"></canvas>
+        <canvas id="current_color" height="101" width="101"></canvas>
+    </p>
 </body>
 
 </html>
